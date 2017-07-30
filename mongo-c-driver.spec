@@ -31,7 +31,7 @@
 Name:      %{?scl_prefix}mongo-c-driver
 Summary:   Client library written in C for MongoDB
 Version:   1.6.3
-Release:   2%{?dist}
+Release:   3%{?dist}
 License:   ASL 2.0
 Group:     System Environment/Libraries
 URL:       https://github.com/%{gh_owner}/%{gh_project}
@@ -67,6 +67,9 @@ Obsoletes:  %{?scl_prefix}%{pkg_name}-tools         < 1.3.0
 Provides:   %{?scl_prefix}%{pkg_name}-tools         = %{version}
 Provides:   %{?scl_prefix}%{pkg_name}-tools%{?_isa} = %{version}
 
+# we don't want to require or provide any pkgconfig(xxx) symbols
+%global __pkgconfig_requires ""
+%global __pkgconfig_provides ""
 
 
 %description
@@ -223,6 +226,9 @@ exit $ret
 
 
 %changelog
+* Wed Jun 21 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-3
+- Remove pkgconfig() provides
+
 * Wed Jun 21 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-2
 - Rebase to mongo-c-driver from Fedora 27 and convert it to SCL
 - disable man pages (RHEL does not contain new enough sphinx)
