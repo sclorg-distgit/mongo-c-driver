@@ -19,19 +19,12 @@
 #global prever       rc6
 %global bsonver      1.6
 
-%ifarch x86_64
-%global with_tests   0%{!?_without_tests:0}
-%else
-# See https://jira.mongodb.org/browse/CDRIVER-1186
-# 32-bit MongoDB support was officially deprecated
-# in MongoDB 3.2, and support is being removed in 3.4.
-%global with_tests   0%{?_with_tests:1}
-%endif
+%global with_tests   0%{!?_without_tests:1}
 
 Name:      %{?scl_prefix}mongo-c-driver
 Summary:   Client library written in C for MongoDB
 Version:   1.6.3
-Release:   3%{?dist}
+Release:   4%{?dist}
 License:   ASL 2.0
 Group:     System Environment/Libraries
 URL:       https://github.com/%{gh_owner}/%{gh_project}
@@ -226,6 +219,9 @@ exit $ret
 
 
 %changelog
+* Fri Jun 23 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-4
+- Run tests during build
+
 * Wed Jun 21 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-3
 - Remove pkgconfig() provides
 
