@@ -24,7 +24,7 @@
 Name:      %{?scl_prefix}mongo-c-driver
 Summary:   Client library written in C for MongoDB
 Version:   1.6.3
-Release:   4%{?dist}
+Release:   5%{?dist}
 License:   ASL 2.0
 Group:     System Environment/Libraries
 URL:       https://github.com/%{gh_owner}/%{gh_project}
@@ -84,6 +84,7 @@ This package contains the shared libraries for %{pkg_name}.
 Summary:    Header files and development libraries for %{pkg_name}
 Group:      Development/Libraries
 Requires:   %{?scl_prefix}%{pkg_name}%{?_isa} = %{version}-%{release}
+Requires:   %{?scl_prefix}%{pkg_name}-libs%{?_isa} = %{version}-%{release}
 Requires:   pkgconfig
 
 
@@ -219,6 +220,9 @@ exit $ret
 
 
 %changelog
+* Mon Jun 26 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-5
+- Add explicit package version requirement
+
 * Fri Jun 23 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-4
 - Run tests during build
 
