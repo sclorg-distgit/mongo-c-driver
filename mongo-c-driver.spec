@@ -24,7 +24,7 @@
 Name:      %{?scl_prefix}mongo-c-driver
 Summary:   Client library written in C for MongoDB
 Version:   1.6.3
-Release:   5%{?dist}
+Release:   6%{?dist}
 License:   ASL 2.0
 Group:     System Environment/Libraries
 URL:       https://github.com/%{gh_owner}/%{gh_project}
@@ -192,11 +192,10 @@ make check || ret=1
 exit $ret
 %endif
 
+%{?scl:EOF}
 
 %post   libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
-
-%{?scl:EOF}
 
 
 %files
@@ -220,6 +219,10 @@ exit $ret
 
 
 %changelog
+* Mon Jul 24 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-6
+- Fix misplaced scl EOF
+  Resolves: RHBZ#1469145
+
 * Mon Jun 26 2017 Marek Skalický <mskalick@redhat.com> - 1.6.3-5
 - Add explicit package version requirement
 
